@@ -1,0 +1,25 @@
+:root {
+    --purple: #4f3b80;
+    --light-purple: #705c95;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16pt;
+}
+
+h1 {
+    font-weight: bolder;
+}
+
+.custom-button {
+    background-color: var(--purple);
+}
+
+.custom-button:hover {
+    background-color: var(--light-purple);
+}
