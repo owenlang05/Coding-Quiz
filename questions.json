@@ -1,0 +1,15 @@
+[{
+    "question": "Commonly used data types DO NOT include: ",
+    "answers": ["Strings", "Booleans", "Alerts", "Numbers"],
+    "correct": "Alerts"
+},
+{
+    "question": "What tag is NOT needed in an html document: ",
+    "answers": ["body", "html", "head", "main"],
+    "correct": "main"
+},
+{
+    "question": "There are ____ levels of heading in html?",
+    "answers": ["three", "four", "five", "six"],
+    "correct": "six"
+}]
