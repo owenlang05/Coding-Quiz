@@ -4,7 +4,7 @@ questions = JSON.parse(questions.responseText);
 
 //'randomizes the array
 questions = questions.sort((a, b) => 0.5 - Math.random());
-
+//useful global variables
 var rootEl = $('#root');
 var headerEl = $('#header');
 var paraEl = $('#paragraph');
@@ -17,6 +17,7 @@ var score = 0;
 var questionIndex = 0;
 
 function Game() {
+    //entrypoint for the quiz
     time = 75
     console.log('Game started');
     
@@ -25,19 +26,23 @@ function Game() {
 }
 
 function HighScores() {
+    //fetches and parses the highscores from local storage
     const savedScores = localStorage.getItem('highscore') || '[]' // get the score, or the initial value if empty
     const highscores = [...JSON.parse(savedScores)]
 
+    //removes any unwanted elements from the dom and sets some styling
     rootEl.children('.highscore').remove()
+    rootEl.children('div').remove();
     rootEl.css('align-items', 'start');
+    //prevents timer from ticking
     clearInterval(timer)
-
+    //adds an element for every score in highscore
     for (var i = 0; i < highscores.length; i++){
         var j = i+1
         rootEl.append('<p class="highscore">'+ j + ". " + highscores[i].initial +': ' + highscores[i].score)
     }
-
-    rootEl.children('div').remove();
+    
+    //changes text and styles
     headerEl.text("Highscores");
     paraEl.text("")
     startButton.css('display', 'none')
@@ -56,7 +61,7 @@ function endGame() {
     //funny bootstrap form thingy
 
     rootEl.children('div').remove()
-
+    //adds buttons and input field from bootstrap
     rootEl.children('.answer-btn').remove();
     rootEl.append('<div class="input-group mb-3">');
     rootEl.children('div').append('<input type="text" class="form-control" placeholder="Initials" aria-describedby="button-addon2">')
@@ -66,7 +71,7 @@ function endGame() {
 }
 
 function renderQuestion(index) {
-
+    //changes text
     headerEl.text(questions[index].question);
     paraEl.text('');
     timerEl.text('Time: ' + time);
@@ -74,7 +79,7 @@ function renderQuestion(index) {
 
     rootEl.css('align-items', 'start')
     rootEl.children('.answer-btn').remove();
-
+    //adds answer buttons
     for (var i = 0; i < 4; i++) {
         //stupid way to get id checks to work, i know this is bad code
         rootEl.append('<button type="button" class="answer-btn btn btn-primary btn-sm my-1 custom-button" id='+
@@ -89,13 +94,16 @@ function onQuestionAnswer(evt) {
     // better or refactor
     if (evt.target.id == questions[questionIndex].correct.split(" ").join("-")){
         score++; 
+        //displays if the answer was right or wrong
         correctText.text('Correct!')
         correctText.css('display', 'block');
     }
     else{
+        // ends the game if there is less than ten seconds left
         if (time > 10){
             time -= 10;
             timerEl.text('Time: ' + time);
+            //displays if the answer is right or wrong
             correctText.text('Wrong!')
             correctText.css('display', 'block');
         }
@@ -106,11 +114,13 @@ function onQuestionAnswer(evt) {
     setTimeout(function(){
         correctText.css('display', 'none')
     }, 1000)
+
     questionIndex++;
     nextQuestion(questionIndex)
 }
 
 function decrementTime() {
+    //ends the game if time is 0
     if (time){
         time--;
     }
@@ -121,6 +131,7 @@ function decrementTime() {
 }
 
 function nextQuestion(index){
+    // goes to next question or ends the game if there is no questions left
     if (index < questions.length) {
         renderQuestion(index)
     }
@@ -135,7 +146,7 @@ function submitInitial(evt) {
     const result = {initial: $('input[type="text"]').val(), score: score};
 
     const savedScores = localStorage.getItem('highscore') || '[]' // get the score, or the initial value if empty
-
+    // sorts and appends the new results to local storage
     const highscores = [...JSON.parse(savedScores), result] // add the result
     .sort((a, b) => b.score- a.score) // sort descending
 
@@ -144,7 +155,7 @@ function submitInitial(evt) {
 }
 
 function reset() {
-
+    //sets everything to the default state so the user can try again
     //clears all of highscore dom stuff
     $('.highscore').remove()
     $('.go-home').remove()
@@ -163,6 +174,8 @@ function reset() {
     startButton.css('display', 'flex')
 }
 
+
+//event handlers
 $('#start-button').click(Game)
 rootEl.on('click', '.answer-btn', onQuestionAnswer);
 rootEl.on('click', '#submit', submitInitial);

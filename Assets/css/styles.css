@@ -1,8 +1,9 @@
 :root {
+    /* color theme for buttons */
     --purple: #4f3b80;
     --light-purple: #705c95;
 }
-
+/* centers content at the start*/
 main, section {
     width: 50%;
     margin: 0 auto;
@@ -19,7 +20,7 @@ section{
 h1 {
     font-weight: bolder;
 }
-
+/* adds styling to the highscore list */
 .highscore {
     background-color: var(--light-purple);
     color: white;
@@ -36,7 +37,7 @@ h1 {
     border-top: 1px solid;
     font-style: italic;
 }
-
+/* changes button color of bootstrap buttons */
 .custom-button {
     background-color: var(--purple);
     color: white;
