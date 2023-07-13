@@ -8,7 +8,7 @@ A timed quiz that allows users to test their coding knowledge. The quiz will als
 
 ## Usage
 
-To use the quiz, go to the website at 
+To use the quiz, go to the website at https://owenlang05.github.io/Coding-Quiz/
 
 ## Credits
 
