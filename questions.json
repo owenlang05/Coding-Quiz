@@ -12,4 +12,25 @@
     "question": "There are ____ levels of heading in html?",
     "answers": ["three", "four", "five", "six"],
     "correct": "six"
+},
+{
+    "question": "The Major components of the Web browser are ___",
+    "answers": ["Menu Bar", "Toolbar", "Location", "All of the Above"],
+    "correct": "All of the Above"
+}, 
+{
+    "question": "URL is an acronym for: ",
+    "answers": ["Universal research locator", "Universal resource locator",
+                "Uniform research locator", "Uniform resource locator"],
+    "correct": "Uniform resource locator"
+},
+{
+    "question": "Which of the following can read and render HTML web pages",
+    "answers": ["Server", "head Tak", "web browser", "terminal emulator"],
+    "correct": "web browser"
+},
+{
+    "question": "The latest HTML standard is",
+    "answers": ["HTML 4.0", "HTML 5.0", "XML", "SGML"],
+    "correct": "HTML 5.0"
 }]
