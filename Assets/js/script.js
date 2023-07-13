@@ -9,6 +9,7 @@ var rootEl = $('#root');
 var headerEl = $('#header');
 var paraEl = $('#paragraph');
 var startButton = $('#start-button');
+var correctText = $('#correct');
 var timerEl = $('#timer');
 var time = 0;
 var timer
@@ -88,16 +89,23 @@ function onQuestionAnswer(evt) {
     // better or refactor
     if (evt.target.id == questions[questionIndex].correct.split(" ").join("-")){
         score++; 
+        correctText.text('Correct!')
+        correctText.css('display', 'block');
     }
     else{
         if (time > 10){
             time -= 10;
             timerEl.text('Time: ' + time);
+            correctText.text('Wrong!')
+            correctText.css('display', 'block');
         }
         else {
             endGame()
         }
     }
+    setTimeout(function(){
+        correctText.css('display', 'none')
+    }, 1000)
     questionIndex++;
     nextQuestion(questionIndex)
 }
